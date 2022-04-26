@@ -7,3 +7,17 @@ jobs:
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     steps:
     - uses: actions/checkout@v2 # Adds a step to checkout the repository code
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Build C# code
+      run: dotnet build
+    - name: Run C# tests
+      run: dotnet test
+    - name: Install TS dependencies
+      run: npm install --prefix ./DotnetTemplate.Web
+    - name: Run TS linter
+      run: npm run lint --prefix ./DotnetTemplate.Web
+    - name: Run TS tests
+      run: npm run test --prefix ./DotnetTemplate.Web
