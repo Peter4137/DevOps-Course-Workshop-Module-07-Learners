@@ -21,7 +21,7 @@ namespace DotnetTemplate.Web.Tests.Controllers
         public void First_page_action_should_return_view_result()
         {
             // When
-            var result = controller.SecondPage();
+            var result = controller.FirstPage();
 
             // Then
             var expectedModel = new FirstPageViewModel();
