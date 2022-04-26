@@ -27,7 +27,7 @@ pipeline {
                 sh "npm run test-with-coverage --prefix ./DotnetTemplate.Web"
 
                 publishCoverage (failUnhealthy: true, 
-                        globalThresholds: [[thresholdTarget: 'Module', unhealthyThreshold: 90.0]],
+                        globalThresholds: [[thresholdTarget: 'Line', unhealthyThreshold: 90.0]],
                         adapters: [istanbulCoberturaAdapter(path: 'DotnetTemplate.Web/coverage/cobertura-coverage.xml')])
             }
         }
