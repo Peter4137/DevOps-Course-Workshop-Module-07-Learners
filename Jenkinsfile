@@ -24,7 +24,8 @@ pipeline {
                 checkout scm
                 sh "npm install --prefix ./DotnetTemplate.Web"
                 sh "npm run lint --prefix ./DotnetTemplate.Web"
-                sh "npm run test --prefix ./DotnetTemplate.Web"
+                sh "npm run test-with-coverage --prefix ./DotnetTemplate.Web"
+                publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco.xml')]
             }
         }
     }
