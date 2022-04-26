@@ -25,7 +25,7 @@ pipeline {
                 sh "npm install --prefix ./DotnetTemplate.Web"
                 sh "npm run lint --prefix ./DotnetTemplate.Web"
                 sh "npm run test-with-coverage --prefix ./DotnetTemplate.Web"
-                publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco.xml')]
+                publishCoverage adapters: [istanbulCoberturaAdapter('DotnetTemplate.Web/coverage/cobertura-coverage.xml')]
             }
         }
     }
