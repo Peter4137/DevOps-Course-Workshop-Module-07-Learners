@@ -15,5 +15,17 @@ pipeline {
                 sh "dotnet test"
             }
         }
+
+        stage('TS Build and test') {
+            agent {
+                docker { image 'node:17-bullseye' }
+            }
+            steps {
+                checkout scm
+                sh "npm install --prefix ./DotnetTemplate.Web"
+                sh "npm run lint --prefix ./DotnetTemplate.Web"
+                sh "npm run test --prefix ./DotnetTemplate.Web"
+            }
+        }
     }
 }
