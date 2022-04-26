@@ -25,7 +25,10 @@ pipeline {
                 sh "npm install --prefix ./DotnetTemplate.Web"
                 sh "npm run lint --prefix ./DotnetTemplate.Web"
                 sh "npm run test-with-coverage --prefix ./DotnetTemplate.Web"
-                publishCoverage adapters: [istanbulCoberturaAdapter('DotnetTemplate.Web/coverage/cobertura-coverage.xml')]
+
+                publishCoverage (failUnhealthy: true, 
+                        globalThresholds: [[thresholdTarget: 'Package', unhealthyThreshold: 90.0]],
+                        adapters: [coberturaAdapter(path: 'DotnetTemplate.Web/coverage/cobertura-coverage.xml')])
             }
         }
     }
