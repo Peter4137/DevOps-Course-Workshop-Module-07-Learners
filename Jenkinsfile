@@ -28,7 +28,7 @@ pipeline {
 
                 publishCoverage (failUnhealthy: true, 
                         globalThresholds: [[thresholdTarget: 'Package', unhealthyThreshold: 90.0]],
-                        adapters: [coberturaAdapter(path: 'DotnetTemplate.Web/coverage/cobertura-coverage.xml')])
+                        adapters: [istanbulCoberturaAdapter(path: 'DotnetTemplate.Web/coverage/cobertura-coverage.xml')])
             }
         }
     }
