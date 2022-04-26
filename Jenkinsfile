@@ -5,16 +5,12 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
         stage('C# Build and test') {
             agent {
                 docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
             }
             steps {
+                checkout scm
                 sh "dotnet build"
                 sh "dotnet test"
             }
